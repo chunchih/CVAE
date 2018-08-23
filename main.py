@@ -17,6 +17,7 @@ from utils import save_img
 from model import VAE
 from torch.autograd import Variable
 
+os.environ['cuda_visible_devices'] = "0"
 def loss_fn(recon_x, x, mean, log_var):
     BCE = torch.nn.functional.binary_cross_entropy(recon_x, x, size_average=False)
     KLD = -0.5 * torch.sum(1 + log_var - mean.pow(2) - log_var.exp())
